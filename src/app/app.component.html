@@ -1,3 +1,25 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-split-pane contentId="main-content"> -->
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-tab-button routerLink="home" href="/Calendar">
+          <ion-icon aria-hidden="true" name="calendar"></ion-icon>
+          <ion-label>Calendar</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button routerLink="settings" href="/settings">
+          <ion-icon aria-hidden="true" name="settings"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button routerLink="resources" href="/resources">
+          <ion-icon aria-hidden="true" name="book"></ion-icon>
+          <ion-label>NCF Resources</ion-label>
+        </ion-tab-button>
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  <!-- </ion-split-pane> -->
 </ion-app>
+

@@ -1,13 +1,60 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Settings</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Settings</ion-title>
-    </ion-toolbar>
+<ion-header id="contents">
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-tab-button routerLink="home" href="/Calendar">
+        <ion-icon aria-hidden="true" name="calendar"></ion-icon>
+        <ion-label>Calendar</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="settings" href="/settings">
+        <ion-icon aria-hidden="true" name="settings"></ion-icon>
+        <ion-label>Settings</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="resources" href="/resources">
+        <ion-icon aria-hidden="true" name="book"></ion-icon>
+        <ion-label>NCF Resources</ion-label>
+      </ion-tab-button>
+  
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Settings</ion-title>
+      </ion-toolbar>
+  </div>
   </ion-header>
+
+
+<!-- Above is for the menu, below is for the actual settings page -->
+<ion-content id="contents" class="general">
+  <ion-title class="general">General Settings</ion-title>
+  <ion-list>
+    <ion-item class="general">
+      <ion-select label="Start of the week" labelPlacement="floating" value="Sunday">
+        <ion-select-option value="Sunday">Sunday</ion-select-option>
+        <ion-select-option value="Saturday">Saturday</ion-select-option>
+        <ion-select-option value="Monday">Monday</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="general">
+      <ion-select label="Theme" labelPlacement="floating" value="Default">
+        <ion-select-option value="White">White</ion-select-option>
+        <ion-select-option value="Dark">Dark</ion-select-option>
+        <ion-select-option value="Default">Default</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-toggle class="general" labelPlacement="end">Use device time zone</ion-toggle>
+    <ion-toggle class="general" labelPlacement="end" [checked]="true">Show completed assignments</ion-toggle>
+  </ion-list>
 </ion-content>
+

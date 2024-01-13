@@ -1,13 +1,101 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Resources</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Resources</ion-title>
-    </ion-toolbar>
+<ion-header id="contents">
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-tab-button routerLink="home" href="/Calendar">
+        <ion-icon aria-hidden="true" name="calendar"></ion-icon>
+        <ion-label>Calendar</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="settings" href="/settings">
+        <ion-icon aria-hidden="true" name="settings"></ion-icon>
+        <ion-label>Settings</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="resources" href="/resources">
+        <ion-icon aria-hidden="true" name="book"></ion-icon>
+        <ion-label>NCF Resources</ion-label>
+      </ion-tab-button>
+  
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Resources</ion-title>
+      </ion-toolbar>
+  </div>
   </ion-header>
+
+<!-- above is the menu navbar, below is the rest of the page -->
+
+<ion-content fullscreen="true" class="ion-padding" id="contents">
+  <div id="text">
+      <ion-title id="title">Career Engagement <br>
+        Opportunity</ion-title>
+      <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/ceo/" target="_blank" class="link">CEO</ion-button>
+      <p id="text">The CEO is a group that helps every NCF 
+        student learn more about Career opportunities
+        and how to succeed in the post-grad world. If
+        you need help writing your resume or finding
+        internships, they can help.</p>
+  </div>
+  <div id="text">
+    <ion-title id="title">Student Success Center</ion-title>
+    <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/academics/academic-career-services/student-success-center/" target="_blank" class="link">SSC</ion-button>
+    <p id="text">The SSC is a group that helps students with an
+      assortment of resources, such as meetings with 
+      a personal coach or having group study sessions.</p>
+</div>
+<div id="text">
+  <ion-title id="title">Writing Resource Center</ion-title>
+  <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/academics/writing-program/writing-resource-center/" target="_blank" class="link">WRC</ion-button>
+  <p id="text">The WRC is where you should go if you’re facing
+    any type of writing trouble, or if you just want 
+    someone to read through what you wrote and 
+    give feedback.</p>
+</div>
+<div id="text">
+  <ion-title id="title">Counselling & Wellness<br>
+     Center</ion-title>
+  <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/cwc/" target="_blank" class="link">CWC</ion-button>
+  <p id="text">The CWC is for any health based crisis you may
+    be facing.</p>
+</div>
+<div id="text">
+  <ion-title id="title">Jane Bancroft Cook<br>
+     Library</ion-title>
+  <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/library/" target="_blank" class="link">Library</ion-button>
+  <p id="text">The library is a great place to go to relax or study.
+    This link brings you to the library’s website which
+    lets you look for online resources such as 
+    academic papers.</p>  
+</div>
+<div id="text">
+  <ion-title id="title">Academic Resource <br>
+     Center</ion-title>
+  <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/academics/academic-career-services/academic-resource-center/" target="_blank" class="link">ARC</ion-button>
+  <p id="text">The ARC is located on the first floor of the library
+    and is where you can meet many resource groups
+    such as the WRC.</p>  
+</div>
+<div id="text">
+  <ion-title id="title">Accessible Learning<br>
+     Center</ion-title>
+  <ion-button id="buttons" fill="outline" href="https://www.ncf.edu/departments/advocacy-accessibility/" target="_blank" class="link">ALC</ion-button>
+  <p id="text">ALC works collaboratively with faculty, staff
+    and students to ensure that appropriate 
+   accommodations, services, resources and 
+   referrals are made that provide equity both 
+   inside and outside of the classroom.</p>  
+</div>
+
+
 </ion-content>
