@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ncfcalendar-2355c": {
+      "hosting": {
+        "app": [
+          "ncfcalendar-2355c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ncfcalendar-2355c"
+  }
+}

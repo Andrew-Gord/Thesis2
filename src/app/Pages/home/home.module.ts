@@ -6,13 +6,15 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { NgCalendarModule } from 'ionic7-calendar';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    NgCalendarModule
   ],
   declarations: [HomePage]
 })

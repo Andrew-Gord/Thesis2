@@ -1,0 +1,75 @@
+
+<ion-header id="contents">
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-tab-button routerLink="home" href="/Calendar">
+        <ion-icon aria-hidden="true" name="calendar"></ion-icon>
+        <ion-label>Calendar</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="settings" href="/settings">
+        <ion-icon aria-hidden="true" name="settings"></ion-icon>
+        <ion-label>Settings</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="resources" href="/resources">
+        <ion-icon aria-hidden="true" name="book"></ion-icon>
+        <ion-label>NCF Resources</ion-label>
+      </ion-tab-button>
+  
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Calendar</ion-title>
+      </ion-toolbar>
+  </div>
+  </ion-header>
+
+
+  <ion-header [translucent]="true"> 
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>{{viewTitle}}</ion-title>
+      <ion-buttons end>
+          <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+          <button ion-button (click)="changeMode('month')">M</button>
+          <button ion-button (click)="changeMode('week')">W</button>
+          <button ion-button (click)="changeMode('day')">D</button>
+          <button ion-button (click)="loadEvents()">Load Events</button>
+      </ion-buttons>
+    </ion-toolbar>
+  
+      
+  
+  </ion-header>
+  
+  <ion-content [fullscreen]="true">
+    <ion-content>
+      
+      <calendar [eventSource]="eventSource"
+                [calendarMode]="calendar.mode"
+                [currentDate]="calendar.currentDate"
+                (onCurrentDateChanged)="onCurrentDateChanged($event)"
+                (onEventSelected)="onEventSelected($event)"
+                (onTitleChanged)="onViewTitleChanged($event)"
+                (onTimeSelected)="onTimeSelected($event)"
+                [step]="calendar.step">
+      </calendar>
+  </ion-content>
+  </ion-content>
+  
+  
+      
+  
+
