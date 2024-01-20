@@ -1,13 +1,60 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
-    </ion-toolbar>
+<ion-header id="contents">
+  <ion-menu contentId="main-content" [hidden]="true">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content id="Menu">
+      <ion-tab-button routerLink="home" href="/Calendar">
+        <ion-icon aria-hidden="true" name="calendar"></ion-icon>
+        <ion-label>Calendar</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="settings" href="/settings">
+        <ion-icon aria-hidden="true" name="settings"></ion-icon>
+        <ion-label>Settings</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="resources" href="/resources">
+        <ion-icon aria-hidden="true" name="book"></ion-icon>
+        <ion-label>NCF Resources</ion-label>
+      </ion-tab-button>
+  
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Log in</ion-title>
+      </ion-toolbar>
+  </div>
   </ion-header>
+
+
+
+
+
+<ion-content  [fullscreen]="true">
+  <div class="padding">
+  <ion-title>Sign in</ion-title>
+  </div>
+
+  <form action="" class="ion-padding">
+    <ion-item>
+      <ion-input>Email/Username</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input>Password</ion-input>
+    </ion-item>
+
+    <ion-button [routerLink]="['/home']">Log in</ion-button>
+  </form>
+  <a [routerLink]="['/resetpassword']">Forgot password?</a>
+  <br>
+
+
+  <a [routerLink]="['/signup']">Or create a new account.</a>
 </ion-content>
