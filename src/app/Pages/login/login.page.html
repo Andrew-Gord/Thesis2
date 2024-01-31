@@ -42,19 +42,19 @@
   <ion-title>Sign in</ion-title>
   </div>
 
-  <form action="" class="ion-padding">
+  <form [formGroup]="logForm" class="ion-padding" novalidate>
     <ion-item>
-      <ion-input>Email/Username</ion-input>
+      <ion-input formControlName="email" placeholder="Email">Email/Username</ion-input>
     </ion-item>
     <ion-item>
-      <ion-input>Password</ion-input>
+      <ion-input formControlName="password" placeholder="Password" type="password">Password</ion-input>
     </ion-item>
 
-    <ion-button [routerLink]="['/home']">Log in</ion-button>
+    <ion-button (click)="login()"  [disabled]="!logForm.valid" >Log in</ion-button>
   </form>
   <a [routerLink]="['/resetpassword']">Forgot password?</a>
   <br>
-
-
   <a [routerLink]="['/signup']">Or create a new account.</a>
+  <br>
+  <a [routerLink]="['/home']">skip</a>
 </ion-content>

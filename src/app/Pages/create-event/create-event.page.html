@@ -1,0 +1,28 @@
+  <div id="create">
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <div class="padding">
+      <ion-title>Sign in</ion-title>
+      </div>
+    
+    <form [formGroup]="createVents" novalidate>
+      <ion-item>
+        <ion-select formControlName="Days" label="Days of the week" [multiple]="true" >
+          <ion-select-option [value]="this.calService.monday">Monday</ion-select-option>
+          <ion-select-option [value]="this.calService.tuesday">Tuesday</ion-select-option>
+          <ion-select-option [value]="this.calService.wednesday">Wednesday</ion-select-option>
+          <ion-select-option [value]="this.calService.thursday">Thursday</ion-select-option>
+          <ion-select-option [value]="this.calService.friday">Friday</ion-select-option>
+          <ion-select-option [value]="this.calService.saturday">Saturday</ion-select-option>
+          <ion-select-option [value]="this.calService.sunday">Sunday</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        
+      </ion-item>
+      <ion-button (click)="enterForm()"></ion-button>
+    </form>
+
+
+
+  </ion-content>
+</div>

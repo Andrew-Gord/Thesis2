@@ -46,7 +46,7 @@
           <button ion-button (click)="changeMode('month')">M</button>
           <button ion-button (click)="changeMode('week')">W</button>
           <button ion-button (click)="changeMode('day')">D</button>
-          <button ion-button (click)="loadEvents()">Load Events</button>
+          <button ion-button (click)="loadEvents()">Create Events</button>
       </ion-buttons>
     </ion-toolbar>
   
@@ -54,10 +54,11 @@
   
   </ion-header>
   
-  <ion-content [fullscreen]="true">
+  <ion-content >
     <ion-content>
       
-      <calendar [eventSource]="eventSource"
+      <calendar showToggleButtons="true"
+                [eventSource]="eventSource"
                 [calendarMode]="calendar.mode"
                 [currentDate]="calendar.currentDate"
                 (onCurrentDateChanged)="onCurrentDateChanged($event)"
@@ -68,8 +69,9 @@
       </calendar>
   </ion-content>
   </ion-content>
-  
-  
+
+    <ion-button [routerLink]="['/create-event']"> Event</ion-button>
+
       
   
 

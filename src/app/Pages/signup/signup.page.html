@@ -17,15 +17,20 @@
     <ion-title>Sign up</ion-title>
     </div>
   
-    <form  class="ion-padding">
+    <form [formGroup]="signUp" class="ion-padding" novalidate>
       <ion-item>
-        <ion-input>Email/Username</ion-input>
+        <ion-input formControlName="email" placeholder="Email"></ion-input>
       </ion-item>
+      <!-- <div *ngIf="this.signUp.controls?.['email'].touched && this.signUp.controls?.['email'].invalid">
+        <ion-text *ngIf="errorControl.email.errors?.['required'] ">
+
+        </ion-text>
+      </div> -->
       <ion-item>
-        <ion-input>Password</ion-input>
+        <ion-input formControlName="password" placeholder="Password"></ion-input>
       </ion-item>
   
-      <ion-button [routerLink]="['/home']">Log in</ion-button>
+      <ion-button (click)="signup()"  [disabled]="!signUp.valid">Sign up</ion-button>
     </form>
 
   

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { CalendarComponent } from 'ionic7-calendar';
 import { CalendarMode } from 'ionic7-calendar/calendar.interface';
 import { Step } from 'ionic7-calendar/calendar.interface';
+import { CalService } from 'src/app/Services/cal.service';
+import { IonDatetime } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,12 @@ import { Step } from 'ionic7-calendar/calendar.interface';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor( private calService:CalService) {}
 
+
+  ngOnInit(){
+    this.loadEvents();
+  }
   eventSource:any;
     viewTitle:any;
 
@@ -52,7 +58,7 @@ export class HomePage {
 
 
     loadEvents() {
-        this.eventSource = this.createRandomEvents();
+        this.eventSource = this.calService.getEvents();
     }
 
     onViewTitleChanged(title:String) {
@@ -117,8 +123,10 @@ export class HomePage {
                 });
             }
         }
+        console.log(events)
         return events;
     }
+    
 
     onRangeChanged(ev:any) {
         console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
