@@ -45,8 +45,8 @@
           <button ion-button [disabled]="isToday" (click)="today()">Today</button>
           <button ion-button (click)="changeMode('month')">M</button>
           <button ion-button (click)="changeMode('week')">W</button>
-          <button ion-button (click)="changeMode('day')">D</button>
-          <button ion-button (click)="loadEvents()">Create Events</button>
+          <button ion-button (click)="loadEvents()">D</button>
+          <button ion-button  [routerLink]="['/create-event']">Create Events</button>
       </ion-buttons>
     </ion-toolbar>
   
@@ -66,11 +66,10 @@
                 (onTitleChanged)="onViewTitleChanged($event)"
                 (onTimeSelected)="onTimeSelected($event)"
                 [step]="calendar.step">
+                
       </calendar>
   </ion-content>
   </ion-content>
-
-    <ion-button [routerLink]="['/create-event']"> Event</ion-button>
 
       
   

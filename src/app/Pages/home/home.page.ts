@@ -5,6 +5,7 @@ import { CalendarMode } from 'ionic7-calendar/calendar.interface';
 import { Step } from 'ionic7-calendar/calendar.interface';
 import { CalService } from 'src/app/Services/cal.service';
 import { IonDatetime } from '@ionic/angular';
+import { CalEvents } from 'src/app/Model/CalEvents';
 
 @Component({
   selector: 'app-home',
@@ -58,14 +59,17 @@ export class HomePage {
 
 
     loadEvents() {
-        this.eventSource = this.calService.getEvents();
+        this.eventSource = this.calService.getEvents().subscribe( events =>{
+            this.eventSource=events;
+            console.log(events)
+        });
     }
 
     onViewTitleChanged(title:String) {
         this.viewTitle = title;
     }
 
-    onEventSelected(event:any) {
+    onEventSelected(event:any) {    
         console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
     }
 

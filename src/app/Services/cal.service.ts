@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-
+import { AuthService } from './auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CalEvents } from '../Model/CalEvents';
+import { JsonPipe } from '@angular/common';
+import { Observable, catchError } from 'rxjs';
+import { ErrorHandlerService } from './error-handler.service';
 @Injectable({
   providedIn: 'root'
 })
 export class CalService {
+
+  private url = "http://localhost:3000/events"
   public startDay=0;
   public monday = (1-this.startDay)%7;
   public tuesday = (2-this.startDay)%7;
@@ -13,8 +20,26 @@ export class CalService {
   public saturday = (6-this.startDay)%7;
   public sunday = (7-this.startDay)%7;
   
+  httpOptions: {headers:HttpHeaders}={
+    headers: new HttpHeaders({"Content-Type" : "application/json"})
+  }
 
-  constructor() { }
+  constructor( private authService:AuthService,private http:HttpClient, private errorService:ErrorHandlerService) { }
+
+  getHour(input:String){
+    const hour = input.split(":")[0];
+    return hour;
+  }
+  getMinute(input:String){
+    const min = input.split(":")[1].split(" ")[0];
+    return min;
+  }
+  getTotalSeconds(input:String){
+    const hour = parseInt(input.split(":")[0])*3600;
+    const min = parseInt(input.split(":")[1].split(" ")[0])*60;
+    const seconds = hour+min;
+    return seconds
+  }
 
   getWeekday(day:number){
     const weekday = day%7;
@@ -44,29 +69,12 @@ export class CalService {
     }
   }
 
-  getEvents(){
-    var events = [];
-    var date = new Date();
-
-    var startDay = 1;
-    var startTime;
-    var endTime;
-    startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),0,50));
-    endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),2,0));
-    events.push({
-        title: 'Event',
-        startTime: startTime,
-        endTime: endTime,
-        allDay: false
-    });
-    events.push({
-        title: 'Event',
-        startTime: new Date(Date.UTC(2024,0,30)),
-        endTime: new Date(Date.UTC(2024,0,31)),
-        allDay: true
-    })
-
-    console.log(this.getWeekday(events[1].endTime.getDate()))
-return events;
+   getEvents(): Observable<CalEvents>{
+    console.log("Test1");
+   
+  
+    return this.http.get<CalEvents>(this.url).pipe(
+      catchError(this.errorService.handleError<CalEvents>("GetEvents"))
+    );
   }
 }
