@@ -18,7 +18,7 @@ export class CalService {
   public thursday = (4-this.startDay)%7;
   public friday = (5-this.startDay)%7;
   public saturday = (6-this.startDay)%7;
-  public sunday = (7-this.startDay)%7;
+  public sunday = (7-this.startDay)%8;
   
  
 
