@@ -6,7 +6,7 @@
         <ion-title>Menu Content</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content id="Menu">
       <ion-tab-button routerLink="home" href="/Calendar">
         <ion-icon aria-hidden="true" name="calendar"></ion-icon>
         <ion-label>Calendar</ion-label>
@@ -30,6 +30,7 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>Calendar</ion-title>
+        
       </ion-toolbar>
   </div>
   </ion-header>
@@ -45,8 +46,8 @@
           <button ion-button [disabled]="isToday" (click)="today()">Today</button>
           <button ion-button (click)="changeMode('month')">M</button>
           <button ion-button (click)="changeMode('week')">W</button>
-          <button ion-button (click)="changeMode('day')">D</button>
-          <button ion-button (click)="loadEvents()">Load Events</button>
+          <button ion-button (click)="loadEvents()">D</button>
+          <button ion-button  [routerLink]="['/create-event']">Create Events</button>
       </ion-buttons>
     </ion-toolbar>
   
@@ -54,10 +55,11 @@
   
   </ion-header>
   
-  <ion-content [fullscreen]="true">
+  <ion-content >
     <ion-content>
       
-      <calendar [eventSource]="eventSource"
+      <calendar showToggleButtons="true"
+                [eventSource]="eventSource"
                 [calendarMode]="calendar.mode"
                 [currentDate]="calendar.currentDate"
                 (onCurrentDateChanged)="onCurrentDateChanged($event)"
@@ -65,11 +67,11 @@
                 (onTitleChanged)="onViewTitleChanged($event)"
                 (onTimeSelected)="onTimeSelected($event)"
                 [step]="calendar.step">
+                
       </calendar>
   </ion-content>
   </ion-content>
-  
-  
+
       
   
 

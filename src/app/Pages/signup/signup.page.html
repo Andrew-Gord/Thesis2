@@ -1,13 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Signup</ion-title>
-    </ion-toolbar>
+<ion-header id="contents">
+  <ion-content>
+    <ion-button routerLink="['/Login']">Back</ion-button>
+  </ion-content>
+  <div class="ion-page" id="main-content">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Sign up</ion-title>
+      </ion-toolbar>
+  </div>
   </ion-header>
-</ion-content>
+
+  <ion-content  [fullscreen]="true">
+    <div class="padding">
+    <ion-title>Sign up</ion-title>
+    </div>
+  
+    <form [formGroup]="signUp" class="ion-padding" novalidate>
+      <ion-item>
+        <ion-input formControlName="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <!-- <div *ngIf="this.signUp.controls?.['email'].touched && this.signUp.controls?.['email'].invalid">
+        <ion-text *ngIf="errorControl.email.errors?.['required'] ">
+
+        </ion-text>
+      </div> -->
+      <ion-item>
+        <ion-input formControlName="password" placeholder="Password"></ion-input>
+      </ion-item>
+  
+      <ion-button (click)="signup()"  [disabled]="!signUp.valid">Sign up</ion-button>
+    </form>
+
+  
+  
+    <ion-button [routerLink]="['/login']">Back</ion-button>
+  </ion-content>

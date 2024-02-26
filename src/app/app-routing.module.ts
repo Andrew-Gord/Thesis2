@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule), canActivate:[AuthGuardService]
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -26,6 +27,14 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./Pages/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'resetpassword',
+    loadChildren: () => import('./Pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'create-event',
+    loadChildren: () => import('./Pages/create-event/create-event.module').then( m => m.CreateEventPageModule)
   },
 ];
 
