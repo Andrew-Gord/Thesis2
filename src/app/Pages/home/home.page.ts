@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CalendarComponent } from 'ionic7-calendar';
 import { CalendarMode } from 'ionic7-calendar/calendar.interface';
 import { Step } from 'ionic7-calendar/calendar.interface';
-import { CalService } from 'src/app/Services/cal.service';
+
 import { getAuth } from "firebase/auth";
 
 import { FirestoreService } from 'src/app/Services/firestore.service';
@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class HomePage {
     
-  constructor( private calService:CalService,private eventsService:FirestoreService, private authService:AuthService) {}
+  constructor(private eventsService:FirestoreService, private authService:AuthService) {}
 
 
   ngOnInit(){

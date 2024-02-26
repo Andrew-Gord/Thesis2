@@ -10,7 +10,7 @@ import { ErrorHandlerService } from './error-handler.service';
 })
 export class CalService {
 
-  private url = "http://localhost:3000/events"
+
   public startDay=0;
   public monday = (1-this.startDay)%7;
   public tuesday = (2-this.startDay)%7;
@@ -20,9 +20,7 @@ export class CalService {
   public saturday = (6-this.startDay)%7;
   public sunday = (7-this.startDay)%7;
   
-  httpOptions: {headers:HttpHeaders}={
-    headers: new HttpHeaders({"Content-Type" : "application/json"})
-  }
+ 
 
   constructor( private authService:AuthService,private http:HttpClient, private errorService:ErrorHandlerService) { }
 
@@ -69,12 +67,5 @@ export class CalService {
     }
   }
 
-   getEvents(): Observable<CalEvents>{
-    console.log("Test1");
    
-  
-    return this.http.get<CalEvents>(this.url).pipe(
-      catchError(this.errorService.handleError<CalEvents>("GetEvents"))
-    );
-  }
 }
