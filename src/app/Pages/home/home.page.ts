@@ -4,8 +4,10 @@ import { CalendarComponent } from 'ionic7-calendar';
 import { CalendarMode } from 'ionic7-calendar/calendar.interface';
 import { Step } from 'ionic7-calendar/calendar.interface';
 import { CalService } from 'src/app/Services/cal.service';
-import { IonDatetime } from '@ionic/angular';
-import { CalEvents } from 'src/app/Model/CalEvents';
+import { getAuth } from "firebase/auth";
+
+import { FirestoreService } from 'src/app/Services/firestore.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,8 @@ import { CalEvents } from 'src/app/Model/CalEvents';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor( private calService:CalService) {}
+    
+  constructor( private calService:CalService,private eventsService:FirestoreService, private authService:AuthService) {}
 
 
   ngOnInit(){
@@ -58,11 +60,11 @@ export class HomePage {
 
 
 
-    loadEvents() {
-        this.eventSource = this.calService.getEvents().subscribe( events =>{
-            this.eventSource=events;
-            console.log(events)
-        });
+    async loadEvents() {
+
+        const events =  await this.eventsService.get(this.authService.userID);
+        this.eventSource= events;
+        //console.log(events);
     }
 
     onViewTitleChanged(title:String) {
@@ -82,8 +84,8 @@ export class HomePage {
     }
 
     onTimeSelected(ev:any) {
-        console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-            (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+        // console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+        //     (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
     }
 
     onCurrentDateChanged(event:Date) {
@@ -91,46 +93,7 @@ export class HomePage {
         today.setHours(0, 0, 0, 0);
         event.setHours(0, 0, 0, 0);
         this.isToday = today.getTime() === event.getTime();
-    }
-
-    createRandomEvents() {
-        var events = [];
-        for (var i = 0; i < 50; i += 1) {
-            var date = new Date();
-            var eventType = Math.floor(Math.random() * 2);
-            var startDay = Math.floor(Math.random() * 90) - 45;
-            var endDay = Math.floor(Math.random() * 2) + startDay;
-            var startTime;
-            var endTime;
-            if (eventType === 0) {
-                startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-                if (endDay === startDay) {
-                    endDay += 1;
-                }
-                endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-                events.push({
-                    title: 'All Day - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: true
-                });
-            } else {
-                var startMinute = Math.floor(Math.random() * 24 * 60);
-                var endMinute = Math.floor(Math.random() * 180) + startMinute;
-                startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-                endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-                events.push({
-                    title: 'Event - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: false
-                });
-            }
-        }
-        console.log(events)
-        return events;
-    }
-    
+    } 
 
     onRangeChanged(ev:any) {
         console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);

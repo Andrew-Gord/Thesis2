@@ -1,9 +1,10 @@
 export interface CalEvents{
     Name: String,
-    STime:Date,
-    ETime:Date,
+    startTime:Date,
+    endTime:Date,
     allDay:Boolean,
     Desc:String,
     RepDay:Number[],
-    RepWeek:Number
+    RepWeek:Number,
+    UserID:String
 }
