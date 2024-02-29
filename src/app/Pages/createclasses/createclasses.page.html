@@ -1,4 +1,4 @@
-  <div id="create">
+<div id="create">
   <ion-content [fullscreen]="true" class="ion-padding">
     <div class="padding">
       <ion-title>Create Event</ion-title>
@@ -11,7 +11,9 @@
       <ion-item>
         <ion-input formControlName="Desc" label="Description" label-placement="floating"></ion-input>
       </ion-item>
-
+      <ion-item>  
+      <ion-toggle (click)="alldayChange()" formControlName="AllDay" >All Day?</ion-toggle>
+      </ion-item>
       <ion-item >
         <ion-input formControlName="STime" label="Start Time" label-placement="floating" placeholder="HH:MM PM/AM"></ion-input>
       </ion-item>

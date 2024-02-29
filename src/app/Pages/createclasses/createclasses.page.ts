@@ -4,17 +4,16 @@ import { LoadingController } from '@ionic/angular';
 import { CalService } from 'src/app/Services/cal.service';
 import { FirestoreService } from 'src/app/Services/firestore.service';
 
-
-
 @Component({
-  selector: 'app-create-event',
-  templateUrl: './create-event.page.html',
-  styleUrls: ['./create-event.page.scss'],
+  selector: 'app-createclasses',
+  templateUrl: './createclasses.page.html',
+  styleUrls: ['./createclasses.page.scss'],
 })
-export class CreateEventPage implements OnInit {
+export class CreateclassesPage implements OnInit {
+
   createVents:FormGroup;
   ifTimeError:Boolean;
-
+  allDays:Boolean;
 
   constructor(public calService:CalService, private fb:FormBuilder,private loadingCtrl:LoadingController,private firestore: FirestoreService) { }
   private timeValidators=[Validators.pattern(/([0-12]|1[0-2]):[0-5][0-9] (PM|AM)/i)];
@@ -58,6 +57,8 @@ export class CreateEventPage implements OnInit {
     }
 
   }
-
+  alldayChange(){
+    this.allDays=!this.allDays;
+  }
 
 }

@@ -9,7 +9,8 @@ import {
   updateDoc,
   where,
   query,
-  getDocs
+  getDocs,
+  getDoc
 } from '@firebase/firestore';
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -20,17 +21,34 @@ import { getAuth } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class FirestoreService {
-
+  public month:number;
   private eventCollection: CollectionReference<DocumentData>;
+  private classCollection: CollectionReference<DocumentData>;
 
   constructor(private readonly firestore: Firestore) {
+    this.getMonth();
+    this.classCollection = collection(this.firestore,'Classes');
     this.eventCollection = collection(this.firestore, 'Events');
   }
 
   
 
-   getAll() {
-    return collectionData(this.eventCollection) as Observable<CalEvents[]>;
+   async getMonth() {
+    const monthref = doc(this.firestore,"Settings","Month")
+    const monthsnap = await getDoc(monthref)
+      console.log(monthsnap.data());
+      this.month = monthsnap.data()['month'];
+
+     const date = new Date();
+     if(date.getMonth() > this.month || date.getMonth() < this.month){
+      updateDoc(monthref,{month:date.getMonth()})
+     }
+     console.log(this.month);
+  }
+
+
+  async give(data:CalEvents){
+
   }
 
   async get(id: string){
@@ -55,8 +73,11 @@ export class FirestoreService {
     return arr ;
   }
 
-  create(CalEvents: CalEvents) {
-    return addDoc(this.eventCollection, CalEvents);
+  createClass(CalEvents:any) {
+    return addDoc(this.classCollection, CalEvents);
+  }
+  createEvent(data:any){
+    return addDoc(this.eventCollection,data);
   }
 
   update(CalEvents: CalEvents) {
