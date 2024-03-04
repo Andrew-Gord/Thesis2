@@ -35,7 +35,10 @@ export class CalService {
   getTotalSeconds(input:String){
     const hour = parseInt(input.split(":")[0])*3600;
     const min = parseInt(input.split(":")[1].split(" ")[0])*60;
-    const seconds = hour+min;
+    var seconds = hour+min;
+    if(input.split(":")[1].split(" ")[1].toLowerCase()=== "pm"){
+      seconds = seconds + 43200;
+    }
     return seconds
   }
 

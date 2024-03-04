@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'settings',
-    loadChildren: () => import('./Pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./Pages/settings/settings.module').then( m => m.SettingsPageModule), canActivate:[AuthGuardService]
   },
   {
     path: 'login',
@@ -34,11 +34,11 @@ const routes: Routes = [
   },
   {
     path: 'create-event',
-    loadChildren: () => import('./Pages/create-event/create-event.module').then( m => m.CreateEventPageModule)
+    loadChildren: () => import('./Pages/create-event/create-event.module').then( m => m.CreateEventPageModule), canActivate:[AuthGuardService]
   },
   {
     path: 'createclasses',
-    loadChildren: () => import('./Pages/createclasses/createclasses.module').then( m => m.CreateclassesPageModule)
+    loadChildren: () => import('./Pages/createclasses/createclasses.module').then( m => m.CreateclassesPageModule), canActivate:[AuthGuardService]
   },
 ];
 

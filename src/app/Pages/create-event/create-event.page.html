@@ -11,27 +11,42 @@
       <ion-item>
         <ion-input formControlName="Desc" label="Description" label-placement="floating"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>Date: </ion-label>
+        <ion-datetime-button datetime="datetime3"></ion-datetime-button>
 
-      <ion-item >
-        <ion-input formControlName="STime" label="Start Time" label-placement="floating" placeholder="HH:MM PM/AM"></ion-input>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="datetime3" presentation="date" formControlName="Date"></ion-datetime>
+            </ng-template>
+          </ion-modal>
       </ion-item>
-      <ion-item >
-        <ion-input formControlName="ETime" label="End Time" label-placement="floating" placeholder="HH:MM PM/AM"></ion-input>
+      <ion-item>  
+        <!-- ONE DATE AND TWO TIM INPUT -->
+        <ion-toggle (click)="alldayChange()" formControlName="AllDay" >All Day?</ion-toggle>
+        </ion-item>
+      <ion-item *ngIf="!this.allDays" >
+        <!-- <ion-datetime presentation="time-date" [preferWheel]="false" formControlName="STime" id="date"></ion-datetime> -->
+        <ion-label>From:</ion-label>
+        <ion-datetime-button datetime="datetime1"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="datetime1" presentation="time" formControlName="STime"></ion-datetime>
+            </ng-template>
+          </ion-modal>
       </ion-item>
-      <ion-item>
-        <ion-select formControlName="Days" label="Days of the week" [multiple]="true" >
-          <ion-select-option [value]="this.calService.monday">Monday</ion-select-option>
-          <ion-select-option [value]="this.calService.tuesday">Tuesday</ion-select-option>
-          <ion-select-option [value]="this.calService.wednesday">Wednesday</ion-select-option>
-          <ion-select-option [value]="this.calService.thursday">Thursday</ion-select-option>
-          <ion-select-option [value]="this.calService.friday">Friday</ion-select-option>
-          <ion-select-option [value]="this.calService.saturday">Saturday</ion-select-option>
-          <ion-select-option [value]="this.calService.sunday">Sunday</ion-select-option>
-        </ion-select>
+      <ion-item *ngIf="!this.allDays">
+        <ion-label>To:</ion-label>
+        <ion-datetime-button datetime="datetime2" ></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="datetime2" presentation="time" formControlName="ETime"></ion-datetime>
+            </ng-template>
+          </ion-modal>
       </ion-item>
-      <ion-item>
-        <ion-input formControlName="EndDate" label="End Date" label-placement="floating"></ion-input>
-      </ion-item>
+
       <ion-button (click)="enterForm()" [disabled]="!createVents.valid">Enter</ion-button>
     </form>
     <span *ngIf="this.ifTimeError">The Start Time cannot be later than the End Time</span>

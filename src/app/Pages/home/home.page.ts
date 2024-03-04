@@ -62,9 +62,11 @@ export class HomePage {
 
     async loadEvents() {
 
-        const events =  await this.eventsService.get(this.authService.userID);
-        this.eventSource= events;
-        //console.log(events);
+        const events =  await this.eventsService.getEvent(this.authService.userID);
+        const classes = await this.eventsService.getClass(this.authService.userID);
+        const combine =  events.concat(classes);
+        this.eventSource= combine;
+        console.log(combine);
     }
 
     onViewTitleChanged(title:String) {
