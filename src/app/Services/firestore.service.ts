@@ -26,13 +26,13 @@ export class FirestoreService {
   private classCollection: CollectionReference<DocumentData>;
 
   constructor(private readonly firestore: Firestore) {
-    var date1 = new Date(Date.UTC(2024,2,12));
-    for(var i = 0;i<12;i++){
-      var W = ((((date1.getUTCDate())+ Math.floor(2.6*((((date1.getMonth()-1)%12)+12)%12)-0.2)-2*Math.floor(date1.getUTCFullYear()/100)+date1.getUTCFullYear()+Math.floor(date1.getUTCFullYear()/4)+Math.floor((date1.getUTCFullYear()/100)/4))%7)+7)%7
-      console.log(date1.getUTCDate())
-      console.log(W);
-      date1.setDate(date1.getDate()+1);
-    }
+    // var date1 = new Date(Date.UTC(2024,2,12));
+    // for(var i = 0;i<12;i++){
+    //   var W = ((((date1.getUTCDate())+ Math.floor(2.6*((((date1.getMonth()-1)%12)+12)%12)-0.2)-2*Math.floor(date1.getUTCFullYear()/100)+date1.getUTCFullYear()+Math.floor(date1.getUTCFullYear()/4)+Math.floor((date1.getUTCFullYear()/100)/4))%7)+7)%7
+    //   console.log(date1.getUTCDate())
+    //   console.log(W);
+    //   date1.setDate(date1.getDate()+1);
+    // }
     
     this.getMonth();
     this.classCollection = collection(this.firestore,'Classes');
@@ -72,7 +72,7 @@ export class FirestoreService {
 
   async getEvent(id: string){
     var arr = [];
-    const CalEventsDocumentReference = query(collection(this.firestore, "Events"), where("UserID", "==", id));
+    const CalEventsDocumentReference = query(collection(this.firestore, "Events"), where("UserID", "==", id||null));
     const querySnapshot = await getDocs(CalEventsDocumentReference);
     querySnapshot.forEach((doc)=>{
       const data = doc.data();
@@ -93,7 +93,7 @@ export class FirestoreService {
 
   async getClass(id: string){
     var arr = [];
-    const CalEventsDocumentReference = query(collection(this.firestore, "Classes"), where("UserID", "==", id));
+    const CalEventsDocumentReference = query(collection(this.firestore, "Classes"), where("UserID", "==", id||null));
     const querySnapshot = await getDocs(CalEventsDocumentReference);
     querySnapshot.forEach((doc)=>{
       const data = doc.data();

@@ -1,5 +1,5 @@
 
-<ion-header id="contents">
+<!-- <ion-header id="contents">
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
@@ -33,22 +33,23 @@
         
       </ion-toolbar>
   </div>
-  </ion-header>
+  </ion-header> -->
 
 
-  <ion-header [translucent]="true"> 
+  <ion-header id="head"> 
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>{{viewTitle}}</ion-title>
       <ion-buttons end>
-          <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-          <button ion-button (click)="changeMode('month')">M</button>
-          <button ion-button (click)="changeMode('week')">W</button>
-          <button ion-button (click)="loadEvents()">D</button>
-          <button ion-button  [routerLink]="['/create-event']">Create Events</button>
-          <button ion-button  [routerLink]="['/createclasses']">Create Classes</button>
+          <button ion-button [disabled]="isToday" (click)="today()"  id="buttonss">Today</button>
+          <button ion-button (click)="changeMode('month')"  id="buttonss">Month</button>
+          <button ion-button (click)="changeMode('week')"  id="buttonss">Week</button>
+          <button ion-button (click)="changeMode('day')"  id="buttonss">Day</button>
+          <button ion-button  [routerLink]="['/create-event']"  id="buttonss">Create Events</button>
+          <button ion-button  [routerLink]="['/createclasses']"  id="buttonss">Create Classes</button>
+          <button ion-button  (click)="this.loadEvents()" id="buttonss">Load Events</button>
           
       </ion-buttons>
     </ion-toolbar>

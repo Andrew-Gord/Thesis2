@@ -16,12 +16,12 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class HomePage {
     
-  constructor(private eventsService:FirestoreService, private authService:AuthService) {}
+  constructor(private eventsService:FirestoreService, private authService:AuthService) {
 
-
-  ngOnInit(){
-    this.loadEvents();
   }
+
+
+
   eventSource:any;
     viewTitle:any;
 

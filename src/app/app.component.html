@@ -1,8 +1,45 @@
 <ion-app>
-  <!-- <ion-split-pane contentId="main-content"> -->
-    <ion-menu contentId="main-content" type="overlay" >
+  <ion-header id="head">
+    <ion-toolbar>
+      <ion-row>
+      <ion-button *ngIf="!this.authService.isUserLoggedIn$" [routerLink]="['']">log Out</ion-button>
+      <ion-button *ngIf="this.authService.isUserLoggedIn$" [routerLink]="['login']">log in</ion-button>
+        <ion-tab-button routerLink="home"  href="/Calendar">
+          <ion-icon aria-hidden="true" name="calendar"></ion-icon>
+          <ion-label>Calendar</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button routerLink="settings" href="/settings">
+          <ion-icon aria-hidden="true" name="settings"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button routerLink="resources" href="/resources">
+          <ion-icon aria-hidden="true" name="book"></ion-icon>
+          <ion-label>NCF Resources</ion-label>
+        </ion-tab-button>
+        </ion-row>
+    </ion-toolbar>
+    
+
+  </ion-header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content">
       <ion-button [routerLink]="['']">log Out</ion-button>
-      <ion-content>
         <ion-tab-button routerLink="home" href="/Calendar">
           <ion-icon aria-hidden="true" name="calendar"></ion-icon>
           <ion-label>Calendar</ion-label>
@@ -18,8 +55,8 @@
           <ion-label>NCF Resources</ion-label>
         </ion-tab-button>
 
-      </ion-content>
-    </ion-menu>
+
+    </ion-menu> -->
     <ion-router-outlet id="main-content"></ion-router-outlet>
   <!-- </ion-split-pane> -->
 </ion-app>
